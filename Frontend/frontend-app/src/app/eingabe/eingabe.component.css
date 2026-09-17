@@ -1,0 +1,63 @@
+.eingabe{
+  display:flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  border:1px solid;
+  border-radius: 8px;
+  background:white;
+}
+.eingabe h2{
+   margin-bottom: 15px;
+   font-family: Bahnschrift;
+   font-weight: 500;
+ }
+.eingabe h3{
+  margin-bottom: 15px;
+  font-family: Bahnschrift;
+  font-weight: 500;
+}
+textarea.kommentar{
+  width:95%;
+  height: 200px;
+  border:1px solid;
+  padding: 10px;
+  border-radius: 6px;
+  font-family: Bahnschrift;
+  background: whitesmoke;
+}
+button[name="send"]{
+  margin-top:15px;
+  padding: 10px 20px;
+  background: green;
+  color:whitesmoke;
+  border: none;
+  border-radius: 6px;
+  font-family: Bahnschrift
+}
+button[name="send"]:hover{
+  background: #43ba43;
+}
+.confidence-wrapper {
+  width: 100%;
+  height: 25px;
+  background: #eee;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.confidence-Bar {
+  height: 100%;
+  transition: width 0.4s ease;
+  background: linear-gradient(
+    90deg,
+    #4caf50 0%,     /* Grün */
+    #ffeb3b 50%,    /* Gelb */
+    #f44336 100%    /* Rot */
+  );
+}
+
