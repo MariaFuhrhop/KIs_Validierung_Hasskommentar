@@ -1,13 +1,15 @@
 import {Component} from '@angular/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import{FormsModule} from "@angular/forms";
-import {BrowserModule} from "@angular/platform-browser";
+import {FormsModule} from "@angular/forms";
+import {CommonModule} from "@angular/common";
+
+//import {BrowserModule} from "@angular/platform-browser";
 
 
 @Component({
   selector: 'app-eingabe',
   standalone: true,
-  imports: [HttpClientModule, FormsModule, BrowserModule],
+  imports: [HttpClientModule, FormsModule, CommonModule],
   templateUrl: './eingabe.component.html',
   styleUrl: './eingabe.component.css'
 })

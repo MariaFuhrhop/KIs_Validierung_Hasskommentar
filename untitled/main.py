@@ -4,23 +4,60 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 import uvicorn
 
-app= FastAPI()
-# Modell
-modelpath="./BERT_model_Class_Weights"
+
+app = FastAPI()
+
+print("APP ID:", id(app))
+
+# Modell laden
+modelpath = "./BERT_model_Class_Weights"
 tokenizer = AutoTokenizer.from_pretrained(modelpath)
-model=AutoModelForSequenceClassification.from_pretrained(modelpath)
+model = AutoModelForSequenceClassification.from_pretrained(modelpath)
+
+# Modell in den Evaluierungsmodus setzen
+model.eval()
+
+print("Model device:", next(model.parameters()).device)
+print("Model labels:", model.config.id2label)
+print("Number of labels:", model.config.num_labels)
+print("TEST MAIN WIRD GELADEN")
 
 class Input(BaseModel):
-    text:str
+    text: str
+
+@app.get("/")
+def root():
+    return {
+        "message": "API läuft"
+    }
 @app.post("/predict")
 def predict(input: Input):
-    tokens=tokenizer(input.text,return_tensor="pt",padding=True,truncation=True, max_length=175)
+
+    print("1. Request angekommen")
+    print("Text:", input.text)
+
+    inputs = tokenizer(input.text,return_tensors="pt",truncation=True,padding=True)
+    print("2. Tokenisierung erfolgreich")
+    print(inputs)
     with torch.no_grad():
-        output=model(**tokens)
-        logits=output.logits
-        prob=torch.sigmoid(logits)[0].item()
-    label="Hasskommentar" if prob >=0.5 else "Kein Hasskommentar"
-    return{
-        "label":label,
-        "confidence":prob
+        outputs = model(**inputs)
+    print("3. Modell erfolgreich ausgeführt")
+    print("Logits:", outputs.logits)
+    probabilities = torch.softmax(outputs.logits, dim=1)
+    print("4. Softmax erfolgreich")
+    print("Probabilities:", probabilities)
+    prediction = torch.argmax(probabilities, dim=1).item()
+    print("5. Prediction:", prediction)
+    confidence = probabilities[0][prediction].item()
+    if prediction == 1:
+        label = 1
+    else:
+        label = 0
+    return {
+        "label": label,
+        "confidence": confidence
     }
+for route in app.routes:
+    print(route.path)
+if __name__ == "__main__":
+    uvicorn.run(app, host="127.0.0.1", port=8000)
