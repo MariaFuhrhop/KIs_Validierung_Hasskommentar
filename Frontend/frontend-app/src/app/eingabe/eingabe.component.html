@@ -1,15 +1,20 @@
 <div class="eingabe">
 <h2>Ist es ein Hasskommentar?</h2>
 <textarea class="kommentar" [(ngModel)]="kommentar" placeholder="Bitte gebe deinen Kommentar ein"></textarea>
-<button name="send" onclick="senden()">
+<button name="send" (click)="senden()">
   Kommentar prüfen
 </button>
 
   <div *ngIf="ergebnis">
     <h3>Ergebnis: {{ergebnis}}</h3>
+    <h4>Wahrscheinlichkeit: {{confidence}}</h4>
   </div>
   <div class="confidence-wrapper" *ngIf="confidence!==null">
-    <div class="confidence-Bar" [style.width.%]="(confidence??0)*100"></div>
+    <div class="confidence-Bar" [style.width.%]="(confidence??0)*100"+
+    [ngClass]="{
+    'hass-bar': ergebnis==='Hasskommentar',
+    'keinHass-bar':ergebnis==='Kein Hasskommentar'
+    }"></div>
     <p *ngIf="confidence !== null">
       Confidence: {{ confidence | number:'1.2-2' }}
     </p>

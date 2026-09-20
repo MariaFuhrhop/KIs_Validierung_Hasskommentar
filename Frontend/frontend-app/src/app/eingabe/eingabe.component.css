@@ -20,6 +20,11 @@
   font-family: Bahnschrift;
   font-weight: 500;
 }
+.eingabe h4{
+  margin-bottom: 15px;
+  font-family: Bahnschrift;
+  font-weight: 500;
+}
 textarea.kommentar{
   width:95%;
   height: 200px;
@@ -50,14 +55,27 @@ button[name="send"]:hover{
   margin-top: 20px;
 }
 
-.confidence-Bar {
+.confidence-Bar{
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.hass-bar {
   height: 100%;
   transition: width 0.4s ease;
   background: linear-gradient(
     90deg,
-    #4caf50 0%,     /* Grün */
-    #ffeb3b 50%,    /* Gelb */
-    #f44336 100%    /* Rot */
+    #ff8c00 0%,     /* Grün */
+    #ff7f50 50%,    /* Gelb */
+    #cc0000 100%    /* Rot */
   );
 }
 
+.keinHass-bar {
+  background: linear-gradient(
+  90deg,
+  #b7ffb7,
+  #4caf50,
+  #006400
+  );
+ }

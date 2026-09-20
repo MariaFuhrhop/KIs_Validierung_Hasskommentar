@@ -49,14 +49,22 @@ def predict(input: Input):
     prediction = torch.argmax(probabilities, dim=1).item()
     print("5. Prediction:", prediction)
     confidence = probabilities[0][prediction].item()
+    print("Model labels:", model.config.id2label)
     if prediction == 1:
-        label = 1
+        label = "Hasskommentar"
     else:
-        label = 0
+        label = "Kein Hasskommentar"
+    print("Prediction:", prediction)
+    print("Confidence:", confidence)
+    print("Label:", label)
+    print("Probabilities:", probabilities.tolist())
     return {
         "label": label,
-        "confidence": confidence
+        "confidence": confidence,
+        "hateProbability": probabilities[0][1].item(),
+        "notHateProbability": probabilities[0][0].item()
     }
+
 for route in app.routes:
     print(route.path)
 if __name__ == "__main__":
