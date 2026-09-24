@@ -41,10 +41,8 @@ def predict(input: Input):
     print(inputs)
     with torch.no_grad():
         outputs = model(**inputs)
-    print("3. Modell erfolgreich ausgeführt")
     print("Logits:", outputs.logits)
     probabilities = torch.softmax(outputs.logits, dim=1)
-    print("4. Softmax erfolgreich")
     print("Probabilities:", probabilities)
     prediction = torch.argmax(probabilities, dim=1).item()
     print("5. Prediction:", prediction)

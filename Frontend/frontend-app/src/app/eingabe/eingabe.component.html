@@ -7,7 +7,7 @@
 
   <div *ngIf="ergebnis">
     <h3>Ergebnis: {{ergebnis}}</h3>
-    <h4>Wahrscheinlichkeit: {{confidence}}</h4>
+    <h4>Wahrscheinlichkeit: {{ (confidence??0) * 100 | number:'1.2-2' }} %</h4>
   </div>
   <div class="confidence-wrapper" *ngIf="confidence!==null">
     <div class="confidence-Bar" [style.width.%]="(confidence??0)*100"+
@@ -16,7 +16,7 @@
     'keinHass-bar':ergebnis==='Kein Hasskommentar'
     }"></div>
     <p *ngIf="confidence !== null">
-      Confidence: {{ confidence | number:'1.2-2' }}
+      Confidence: {{ confidence | number:'1.0-2' }}
     </p>
 </div>
 </div>
