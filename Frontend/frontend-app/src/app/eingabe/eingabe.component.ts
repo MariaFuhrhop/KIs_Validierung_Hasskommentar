@@ -19,9 +19,9 @@ export class EingabeComponent{
   confidence:number| null=null;
   constructor(private http: HttpClient){}
   senden(){
-    const body={text:this.kommentar};
+    const body={text:this.kommentar}; //requenst body erzeugen
 
-    this.http.post<any>('http://localhost:8080/classify',body)
+    this.http.post<any>('http://localhost:8080/classify',body) // requenst body geht dann an das Modell mit post anfrage
       .subscribe({
         next:(response)=>{
           this.ergebnis=response.label;

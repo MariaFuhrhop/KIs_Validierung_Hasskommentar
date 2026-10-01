@@ -1,5 +1,6 @@
 package org.example.api;
 
+/** Diese Klasse speichert die Rückgabe des Modells in ein Objekt*/
 public class PythonResponse {
     private String label;
     private float confidence;

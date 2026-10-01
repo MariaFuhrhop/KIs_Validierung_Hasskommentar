@@ -1,22 +1,24 @@
 <div class="eingabe">
 <h2>Ist es ein Hasskommentar?</h2>
 <textarea class="kommentar" [(ngModel)]="kommentar" placeholder="Bitte gebe deinen Kommentar ein"></textarea>
-<button name="send" (click)="senden()">
+<button name="send" (click)="senden()"> <!--wenn darauf geklickt wird dann wird die Methode senden() in der ts-Komponente aufgerufen-->
   Kommentar prüfen
 </button>
 
-  <div *ngIf="ergebnis">
+  <div *ngIf="ergebnis"> <!-- wenn das ergebnis empfangen wird dann zeig es an-->
     <h3>Ergebnis: {{ergebnis}}</h3>
-    <h4>Wahrscheinlichkeit: {{ (confidence??0) * 100 | number:'1.2-2' }} %</h4>
+    <h4>Wahrscheinlichkeit: {{ (confidence??0) * 100 | number:'1.2-2' }} %</h4> <!-- die confidence wird auf 2 nachkommastellen gerundet-->
   </div>
-  <div class="confidence-wrapper" *ngIf="confidence!==null">
+  <div class="confidence-wrapper" *ngIf="confidence!==null"> <!-- wenn ein confidence wert vorhanden ist dann zeig diesen div bereich an -->
+    <!-- die confidence bar wird gebaut und mit style wird dynamisch die css breite verändert, confidence ??0 wenn confidence null oder undefiniert ist dann nimm 0-->
+    <!-- die farbe wird anhand der ngClass (CSS Klassen) vom ergebnis verändert, wenn das ergebnis Hasskommentar ist dann heißt die klasse bass-bar-->
     <div class="confidence-Bar" [style.width.%]="(confidence??0)*100"+
     [ngClass]="{
     'hass-bar': ergebnis==='Hasskommentar',
     'keinHass-bar':ergebnis==='Kein Hasskommentar'
     }"></div>
     <p *ngIf="confidence !== null">
-      Confidence: {{ confidence | number:'1.0-2' }}
+      Confidence: {{ confidence | number:'1.0-2' }} <!-- die confidence wird auf keine Nachkommastelle gerundet -->
     </p>
-</div>
+  </div>
 </div>

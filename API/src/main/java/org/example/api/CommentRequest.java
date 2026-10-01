@@ -1,5 +1,5 @@
 package org.example.api;
-
+/* Diese Klasse speichert den zu prüfenden Kommentar*/
 public class CommentRequest {
     private String text;
 
