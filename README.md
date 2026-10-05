@@ -9,9 +9,9 @@ oder über die git bash:
 ```bash
 git lfs install
 
-git clone <https://github.com/MariaFuhrhop/KIs_Validierung_Hasskommentar.git>
+git clone https://github.com/MariaFuhrhop/KIs_Validierung_Hasskommentar.git
 
-cd <Repository-Ordner>
+cd KIs_Validierung_Hasskommentar
 
 git lfs pull
 ```
