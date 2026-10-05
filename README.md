@@ -1,17 +1,29 @@
 # Validierung von Künstlicher Intelligenz zur Erkennung von Hasskommentaren im Netz
 # zum Clonen
-benötigen Sie git lfs um die großen KI-Modell Dateien zu clonen.
-man kann es unter diesem Link herunterladen: https://git-lfs.com/ 
-oder über die git bash:
-  git lfs install
-  git clone <repo>
-  git lfs pull
+Für das Klonen des Repositories wird Git LFS (Large File Storage) benötigt, da die KI-Modelle aufgrund ihrer Größe darüber verwaltet werden.E
+Es kann unter diesem Link herunterladen:
 
+https://git-lfs.com/ 
+
+oder über die git bash:
+```bash
+git lfs install
+
+git clone <https://github.com/MariaFuhrhop/KIs_Validierung_Hasskommentar.git>
+
+cd <Repository-Ordner>
+
+git lfs pull
+```
 
 Ordner strukturen:
-im Ordner KI befinden sich  unter Modelle die gespeicherten Modelle, unter Code der COde des Modelltrainings, das Datenset sowie die Textdateien mit den Wahrscheinlichkeiten aus der Validierung.
+
+Im Ordner KI befinden sich  unter Modelle die gespeicherten Modelle, unter Code der COde des Modelltrainings, das Datenset sowie die Textdateien mit den Wahrscheinlichkeiten aus der Validierung.
+
 Im Ordner untitled befindet sich das aktuelle KI-Modell welches im Prototypen integriert ist, sowie seine FastAPI (main.py).
+
 Im Ordner API befindet sich die Springboot API unter API/src/main/java/org/example/api die Maindatei ist PredictController.java.
+
 Im Ordner Frontend befindet sich unter frontend-app/src/app/eingabe das Frontend.
 
 
